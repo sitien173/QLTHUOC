@@ -1,6 +1,7 @@
 package com.ptithcm.qlthuoc.Entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,4 +16,5 @@ public class Thuoc implements Serializable {
     private int soluong;
     private byte[] hinhanh;
     private float dongia;
+    private Collection<Thuoc_NhaThuoc> nhaThuocs;
 }

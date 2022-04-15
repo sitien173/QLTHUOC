@@ -15,10 +15,10 @@ import android.widget.Toast;
 import com.ptithcm.qlthuoc.Entity.AppUser;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 
 public class MainActivity extends AppCompatActivity {
-
     EditText txtUsername,txtPassword;
     TextView txtRegistration;
     Button btnLogin;

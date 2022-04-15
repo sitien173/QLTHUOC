@@ -5,19 +5,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".Registration"
     >
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:paddingVertical="35dp"
         android:textAlignment="center"
         android:textSize="60sp"
         android:fontFamily="cursive"
-        android:textColor="@color/light"
-        android:background="@drawable/bg_login"
+        android:textColor="@color/black"
+        android:background="@drawable/add_user"
         android:layout_marginBottom="25dp"
         />
     <TextView
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
-        android:id="@+id/txtLogin"
+        android:id="@+id/txtUsername"
         android:layout_marginHorizontal="30dp"
         />
     <TextView
@@ -51,12 +51,29 @@
         android:paddingVertical="20dp"
         android:layout_marginHorizontal="30dp"
         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:text="Họ tên"
+        android:textColor="@color/primary"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Họ tên"
+        android:id="@+id/txtHoTen"
+        android:inputType="text"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="20dp"
+        android:layout_marginHorizontal="30dp"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/btnLogin"
+        android:text="Đăng Ký"
+        android:id="@+id/btnRegistration"
         android:layout_marginHorizontal="30dp"
         android:layout_marginVertical="20dp"
         android:background="@drawable/button_btn"
@@ -65,8 +82,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtRegistration"
-        android:text="No Account yet? create One"
+        android:text="Has Account? click to login"
+        android:id="@+id/txtLogin"
         android:textColor="@color/danger"
         android:layout_marginHorizontal="30dp"
         android:textAlignment="center"

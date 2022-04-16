@@ -48,18 +48,31 @@ public class UploadFile extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-        Uri selectedImage = imageReturnedIntent.getData();
-        InputStream iStream = null;
-        try {
-            iStream = getContentResolver().openInputStream(selectedImage);
-            byte[] inputData = getBytes(iStream);
-            imageReturnedIntent.putExtra("byte", inputData);
-            setResult(RESULT_OK, imageReturnedIntent);
+        if(requestCode == CAMERA_REQUEST)
+        {
+            // chưua xử lí
+            setResult(RESULT_CANCELED);
             finish();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        else if(requestCode == GALLERY_REQUEST)
+        {
+            Uri selectedImage = imageReturnedIntent.getData();
+            InputStream iStream = null;
+            try {
+                iStream = getContentResolver().openInputStream(selectedImage);
+                byte[] inputData = getBytes(iStream);
+                imageReturnedIntent.putExtra("img", inputData);
+                setResult(RESULT_OK, imageReturnedIntent);
+                finish();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                setResult(RESULT_CANCELED);
+                finish();
+            } catch (IOException e) {
+                e.printStackTrace();
+                setResult(RESULT_CANCELED);
+                finish();
+            }
         }
 
 

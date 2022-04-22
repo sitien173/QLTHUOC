@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Order"
+    >
+
+    <!-- Header order -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/primary"
+        >
+
+        <!-- Title header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Thông tin khách hàng"
+            android:textColor="@color/light"
+            android:textSize="22sp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+        />
+
+        <!-- Info customer -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/avatar"
+                android:contentDescription="user avatar"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/txtAvatar"
+                />
+
+            <!-- Info detail  -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Khách hàng: "
+                    android:textColor="@color/light"
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    android:id="@+id/txtName"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Số ĐT: "
+                    android:textColor="@color/light"
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    android:id="@+id/txtPhone"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Địa chỉ: "
+                    android:textColor="@color/light"
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    android:id="@+id/txtAddress"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Scroll view button -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight=".60"
+        >
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
+
+                <!-- Order line -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/my_border"
+                    android:layout_marginBottom="5dp"
+                    >
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/medicine"
+                            android:contentDescription="user avatar"
+                            android:class="@+class/txtImageMedicine"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            />
+
+                        <!-- Order line medicine  -->
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="260dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="Simethicon"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtNameMedicine"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="SL: 100"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtQuantity"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="10,000 VNĐ"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtPrice"/>
+
+                        </LinearLayout>
+
+                        <Button
+                            android:class="@+class/btnDelete"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:drawableLeft="@drawable/ic_delete"
+                            android:layout_gravity="center_vertical"
+                            android:backgroundTint="@android:color/white"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Order line -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/my_border"
+                    android:layout_marginBottom="5dp"
+                    >
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/medicine"
+                            android:contentDescription="user avatar"
+                            android:class="@+class/txtImageMedicine"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            />
+
+                        <!-- Order line medicine  -->
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="260dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="Magnesi"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtNameMedicine"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="SL: 20"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtQuantity"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="14,300 VNĐ"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtPrice"/>
+
+                        </LinearLayout>
+
+                        <Button
+                            android:class="@+class/btnDelete"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:drawableLeft="@drawable/ic_delete"
+                            android:layout_gravity="center_vertical"
+                            android:backgroundTint="@android:color/white"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Order line -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/my_border"
+                    android:layout_marginBottom="5dp"
+                    >
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/medicine"
+                            android:contentDescription="user avatar"
+                            android:class="@+class/txtImageMedicine"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            />
+
+                        <!-- Order line medicine  -->
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="260dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="Esomeprazol"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtNameMedicine"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="SL: 35"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtQuantity"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="17,800 VNĐ"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtPrice"/>
+
+                        </LinearLayout>
+
+                        <Button
+                            android:class="@+class/btnDelete"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:drawableLeft="@drawable/ic_delete"
+                            android:layout_gravity="center_vertical"
+                            android:backgroundTint="@android:color/white"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Order line -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/my_border"
+                    android:layout_marginBottom="5dp"
+                    >
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/medicine"
+                            android:contentDescription="user avatar"
+                            android:class="@+class/txtImageMedicine"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            />
+
+                        <!-- Order line medicine  -->
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="260dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="Esomeprazol"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtNameMedicine"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="SL: 35"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtQuantity"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="17,800 VNĐ"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:class="@+class/txtPrice"/>
+
+                        </LinearLayout>
+
+                        <Button
+                            android:class="@+class/btnDelete"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:drawableLeft="@drawable/ic_delete"
+                            android:layout_gravity="center_vertical"
+                            android:backgroundTint="@android:color/white"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </TableLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- Add item order line -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".20"
+        android:background="@drawable/my_border"
+        >
+        <Button
+            android:class="@+class/btnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_add"
+            android:layout_gravity="center_vertical"
+            android:backgroundTint="@android:color/white"
+            android:layout_marginHorizontal="160dp"
+            />
+    </LinearLayout>
+
+    <!-- Info total order -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".10"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="Tiền hàng:"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="1,000,000 VNĐ"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Group button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:text="Xuất hóa đơn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:textStyle="bold"
+            android:backgroundTint="@color/success"/>
+
+        <Button
+            android:text="Quay lại"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:textStyle="bold"
+            android:backgroundTint="@color/design_default_color_secondary_variant"/>
+
+    </LinearLayout>
+</LinearLayout>

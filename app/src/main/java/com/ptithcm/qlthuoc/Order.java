@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class Order extends AppCompatActivity {
-    TextView txtLogin;
+    EditText txtUsername, txtPhone, txtAddress;
     Button btnLogin, btnBack;
     DbContext dbContext;
     SharedPreferences sharedPreferences;
@@ -24,11 +25,6 @@ public class Order extends AppCompatActivity {
         setConfig();
         setControl();
         setEvent();
-
-        // redirect
-        if(sharedPreferences.getBoolean("is_login", false)){
-            Toast.makeText(this, "Bạn đã login", Toast.LENGTH_LONG).show();
-        }
     }
 
     private void setConfig() {
@@ -48,7 +44,6 @@ public class Order extends AppCompatActivity {
     }
 
     private void setControl() {
-        txtLogin = findViewById(R.id.txtLogin);
         btnBack = findViewById(R.id.btnLogin);
     }
 }

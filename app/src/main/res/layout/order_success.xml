@@ -124,7 +124,6 @@
                             android:layout_height="60dp"
                             android:src="@drawable/medicine"
                             android:contentDescription="user avatar"
-                            android:class="@+class/txtImageMedicine"
                             android:layout_gravity="center_vertical"
                             android:paddingLeft="10dp"
                             />
@@ -142,24 +141,21 @@
                                 android:layout_marginBottom="8dp"
                                 android:text="Simethicon"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtNameMedicine"/>
+                                android:textSize="18sp"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:text="SL: 100"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtQuantity"/>
+                                android:textSize="18sp"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:text="10,000 VNĐ"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtPrice"/>
+                                android:textSize="18sp"/>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -185,7 +181,6 @@
                             android:layout_height="60dp"
                             android:src="@drawable/medicine"
                             android:contentDescription="user avatar"
-                            android:class="@+class/txtImageMedicine"
                             android:layout_gravity="center_vertical"
                             android:paddingLeft="10dp"
                             />
@@ -203,24 +198,21 @@
                                 android:layout_marginBottom="8dp"
                                 android:text="Magnesi"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtNameMedicine"/>
+                                android:textSize="18sp"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:text="SL: 20"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtQuantity"/>
+                                android:textSize="18sp"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:text="14,300 VNĐ"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtPrice"/>
+                                android:textSize="18sp"/>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -246,7 +238,6 @@
                             android:layout_height="60dp"
                             android:src="@drawable/medicine"
                             android:contentDescription="user avatar"
-                            android:class="@+class/txtImageMedicine"
                             android:layout_gravity="center_vertical"
                             android:paddingLeft="10dp"
                             />
@@ -264,24 +255,21 @@
                                 android:layout_marginBottom="8dp"
                                 android:text="Esomeprazol"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtNameMedicine"/>
+                                android:textSize="18sp"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:text="SL: 35"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtQuantity"/>
+                                android:textSize="18sp"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:text="17,800 VNĐ"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtPrice"/>
+                                android:textSize="18sp"/>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -302,12 +290,12 @@
                         android:layout_height="100dp"
                         >
 
+
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:src="@drawable/medicine"
                             android:contentDescription="user avatar"
-                            android:class="@+class/txtImageMedicine"
                             android:layout_gravity="center_vertical"
                             android:paddingLeft="10dp"
                             />
@@ -325,24 +313,21 @@
                                 android:layout_marginBottom="8dp"
                                 android:text="Esomeprazol"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtNameMedicine"/>
+                                android:textSize="18sp"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:text="SL: 35"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtQuantity"/>
+                                android:textSize="18sp"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:text="17,800 VNĐ"
                                 android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:class="@+class/txtPrice"/>
+                                android:textSize="18sp"/>
 
                         </LinearLayout>
                     </LinearLayout>

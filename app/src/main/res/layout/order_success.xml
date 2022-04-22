@@ -90,7 +90,7 @@
     <!-- Scroll view button -->
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".60"
         >
@@ -162,15 +162,6 @@
                                 android:class="@+class/txtPrice"/>
 
                         </LinearLayout>
-
-                        <Button
-                            android:class="@+class/btnDelete"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:drawableLeft="@drawable/ic_delete"
-                            android:layout_gravity="center_vertical"
-                            android:backgroundTint="@android:color/white"
-                            />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -202,7 +193,7 @@
                         <!-- Order line medicine  -->
                         <LinearLayout
                             android:orientation="vertical"
-                            android:layout_width="260dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="20dp"
                             >
@@ -232,15 +223,6 @@
                                 android:class="@+class/txtPrice"/>
 
                         </LinearLayout>
-
-                        <Button
-                            android:class="@+class/btnDelete"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:drawableLeft="@drawable/ic_delete"
-                            android:layout_gravity="center_vertical"
-                            android:backgroundTint="@android:color/white"
-                            />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -302,15 +284,6 @@
                                 android:class="@+class/txtPrice"/>
 
                         </LinearLayout>
-
-                        <Button
-                            android:class="@+class/btnDelete"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:drawableLeft="@drawable/ic_delete"
-                            android:layout_gravity="center_vertical"
-                            android:backgroundTint="@android:color/white"
-                            />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -372,15 +345,6 @@
                                 android:class="@+class/txtPrice"/>
 
                         </LinearLayout>
-
-                        <Button
-                            android:class="@+class/btnDelete"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:drawableLeft="@drawable/ic_delete"
-                            android:layout_gravity="center_vertical"
-                            android:backgroundTint="@android:color/white"
-                            />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -396,14 +360,24 @@
         android:layout_weight=".20"
         android:background="@drawable/my_border"
         >
-        <Button
-            android:class="@+class/btnDelete"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawableLeft="@drawable/ic_add"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".70"
+            android:layout_height="wrap_content"
+            android:text="XUẤT HÓA ĐƠN THÀNH CÔNG"
+            android:textSize="20dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/teal_700"
+            android:textStyle="italic"
             android:layout_gravity="center_vertical"
-            android:backgroundTint="@android:color/white"
-            android:layout_marginHorizontal="160dp"
+        />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight=".30"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_success"
+            android:contentDescription="user avatar"
+            android:layout_gravity="center_vertical"
             />
     </LinearLayout>
 
@@ -441,20 +415,10 @@
         android:orientation="horizontal">
 
         <Button
-            android:text="Xuất hóa đơn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".50"
+            android:text="Tạo hóa đơn mới"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:textStyle="bold"
-            android:backgroundTint="@color/success"/>
-
-        <Button
-            android:text="Quay lại"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".50"
-            android:textStyle="bold"
-            android:backgroundTint="@color/design_default_color_secondary_variant"/>
-
+            android:backgroundTint="@color/primary"/>
     </LinearLayout>
 </LinearLayout>

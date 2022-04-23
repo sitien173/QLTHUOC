@@ -63,7 +63,7 @@
                     android:textColor="@color/light"
                     android:textSize="18sp"
                     android:textStyle="italic"
-                    android:id="@+id/txtName"/>
+                    android:id="@+id/txtUsername"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -404,6 +404,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textStyle="bold"
+            android:id="@+id/btnNewOrder"
             android:backgroundTint="@color/primary"/>
     </LinearLayout>
 </LinearLayout>

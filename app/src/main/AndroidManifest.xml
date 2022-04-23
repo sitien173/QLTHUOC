@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Order" />
+        <activity android:name=".OrderSuccess" />
     </application>
 
 </manifest>

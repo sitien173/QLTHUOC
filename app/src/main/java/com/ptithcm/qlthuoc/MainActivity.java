@@ -12,11 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ptithcm.qlthuoc.Entity.AppUser;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-
 
 public class MainActivity extends AppCompatActivity {
     EditText txtUsername,txtPassword;

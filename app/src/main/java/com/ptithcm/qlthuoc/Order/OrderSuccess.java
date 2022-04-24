@@ -1,19 +1,21 @@
-package com.ptithcm.qlthuoc;
+package com.ptithcm.qlthuoc.Order;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ptithcm.qlthuoc.DbContext;
+import com.ptithcm.qlthuoc.Order.Order;
+import com.ptithcm.qlthuoc.R;
 
-public class Order extends AppCompatActivity {
+
+public class OrderSuccess extends AppCompatActivity {
     TextView txtUsername, txtPhone, txtAddress, txtTotalOrder;
-    Button btnBack, btnExportOrder;
+    Button btnNewOrder;
     DbContext dbContext;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -21,7 +23,7 @@ public class Order extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_order);
+        setContentView(R.layout.order_success);
         setConfig();
         setControl();
         setEvent();
@@ -34,18 +36,13 @@ public class Order extends AppCompatActivity {
     }
 
     private void setEvent() {
-        btnBack.setOnClickListener(view -> {
-            startActivity(new Intent(this, MainActivity.class));
-        });
-
-        btnExportOrder.setOnClickListener(view -> {
-            startActivity(new Intent(this, OrderSuccess.class));
+        btnNewOrder.setOnClickListener(view -> {
+            startActivity(new Intent(this, Order.class));
         });
     }
 
     private void setControl() {
-        btnBack = findViewById(R.id.btnBack);
-        btnExportOrder = findViewById(R.id.btnExportOrder);
+        btnNewOrder = findViewById(R.id.btnNewOrder);
         txtUsername = findViewById(R.id.txtUsername);
         txtPhone = findViewById(R.id.txtPhone);
         txtAddress = findViewById(R.id.txtAddress);

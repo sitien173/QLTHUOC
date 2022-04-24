@@ -1,4 +1,4 @@
-package com.ptithcm.qlthuoc;
+package com.ptithcm.qlthuoc.Order;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,10 +8,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ptithcm.qlthuoc.DbContext;
+import com.ptithcm.qlthuoc.R;
 
-public class OrderSuccess extends AppCompatActivity {
-    TextView txtUsername, txtPhone, txtAddress, txtTotalOrder;
-    Button btnNewOrder;
+
+public class AddInfoCustomer extends AppCompatActivity {
+    TextView txtUsername, txtPhone, txtAddress;
+    Button btnAddInfoCustomer;
     DbContext dbContext;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -19,7 +22,7 @@ public class OrderSuccess extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.order_success);
+        setContentView(R.layout.add_info_customer);
         setConfig();
         setControl();
         setEvent();
@@ -32,16 +35,15 @@ public class OrderSuccess extends AppCompatActivity {
     }
 
     private void setEvent() {
-        btnNewOrder.setOnClickListener(view -> {
-            startActivity(new Intent(this, Order.class));
+        btnAddInfoCustomer.setOnClickListener(view -> {
+            startActivity(new Intent(this, ProductOrder.class));
         });
     }
 
     private void setControl() {
-        btnNewOrder = findViewById(R.id.btnNewOrder);
+        btnAddInfoCustomer = findViewById(R.id.btnAddInfoCustomer);
         txtUsername = findViewById(R.id.txtUsername);
         txtPhone = findViewById(R.id.txtPhone);
         txtAddress = findViewById(R.id.txtAddress);
-        txtTotalOrder = findViewById(R.id.txtTotalOrder);
     }
 }

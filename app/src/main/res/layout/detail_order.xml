@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Order"
+    tools:context=".Order.Order"
     >
 
     <!-- Header order -->
@@ -52,7 +52,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 >
                 <TextView
                     android:layout_width="match_parent"
@@ -384,6 +384,7 @@
             android:layout_gravity="center_vertical"
             android:backgroundTint="@android:color/white"
             android:layout_marginHorizontal="160dp"
+            android:id="@+id/btnAddOrderLine"
             />
     </LinearLayout>
 

@@ -3,14 +3,27 @@ package com.ptithcm.qlthuoc.Entity;
 import java.io.Serializable;
 
 
-
-
 public class AppUser implements Serializable {
     private String username;
     private String password;
     private String hoten;
     private byte[] avatar;
     private String role;
+
+    public AppUser(){
+        this.username = "";
+        this.password = "";
+        this.hoten = "";
+        this.avatar = null;
+        this.role = "";
+    }
+    public AppUser(String username,String password, String hoten, byte[] avatar, String role){
+        this.username = username;
+        this.password = password;
+        this.hoten = hoten;
+        this.avatar = avatar;
+        this.role = role;
+    }
 
     public String getUsername() {
         return username;

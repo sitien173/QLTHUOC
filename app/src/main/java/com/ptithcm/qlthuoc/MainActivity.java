@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ptithcm.qlthuoc.Order.AddInfoCustomer;
+
 
 public class MainActivity extends AppCompatActivity {
     EditText txtUsername,txtPassword;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 // redirect to dashboard
                 Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(this, AddInfoCustomer.class));
             }
 
             else

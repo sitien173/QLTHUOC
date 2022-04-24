@@ -27,8 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Order" />
-        <activity android:name=".OrderSuccess" />
+        <activity android:name=".Order.AddInfoCustomer" />
+        <activity android:name=".Order.ProductOrder" />
+        <activity android:name=".Order.Order" />
+        <activity android:name=".Order.OrderSuccess" />
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Order"
+    tools:context=".Order.Order"
     >
 
     <!-- Header order -->
@@ -52,7 +52,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 >
                 <TextView
                     android:layout_width="match_parent"
@@ -338,35 +338,35 @@
     </LinearLayout>
 
     <!-- Add item order line -->
+
+    <!-- Info total order -->
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".20"
         android:background="@drawable/my_border"
-        >
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight=".70"
             android:layout_height="wrap_content"
-            android:text="XUẤT HÓA ĐƠN THÀNH CÔNG"
-            android:textSize="20dp"
-            android:paddingLeft="15dp"
-            android:textColor="@color/teal_700"
-            android:textStyle="italic"
             android:layout_gravity="center_vertical"
-        />
+            android:layout_weight=".70"
+            android:paddingLeft="15dp"
+            android:text="XUẤT HÓA ĐƠN THÀNH CÔNG"
+            android:textColor="@color/teal_700"
+            android:textSize="20dp"
+            android:textStyle="italic" />
+
         <ImageView
             android:layout_width="0dp"
-            android:layout_weight=".30"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_success"
-            android:contentDescription="user avatar"
             android:layout_gravity="center_vertical"
-            />
+            android:layout_weight=".30"
+            android:contentDescription="user avatar"
+            android:src="@drawable/ic_success" />
     </LinearLayout>
 
-    <!-- Info total order -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

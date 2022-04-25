@@ -12,8 +12,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ptithcm.qlthuoc.Order.AddInfoCustomer;
+import com.ptithcm.qlthuoc.Entity.AppUser;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import com.ptithcm.qlthuoc.Entity.*;
+import com.ptithcm.qlthuoc.Order.AddInfoCustomer;
 
 public class MainActivity extends AppCompatActivity {
     EditText txtUsername,txtPassword;
@@ -22,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     DbContext dbContext;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-
+    static AppUser userLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,14 +51,15 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(view -> {
             String username = txtUsername.getText().toString().trim();
             String password = txtPassword.getText().toString().trim();
+            userLogin = getUserLogin(username,password);
             Boolean islogin = isLogin(username,password);
             if(islogin)
             {
                 // redirect to dashboard
                 Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(this, AddInfoCustomer.class));
-            }
 
+                startActivity(new Intent(this, ListUser.class));
+            }
             else
             {
                 Toast.makeText(this, "Đăng nhập thất bại vui lòng thử lại", Toast.LENGTH_LONG).show();
@@ -92,5 +97,26 @@ public class MainActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         txtRegistration = findViewById(R.id.txtRegistration);
+    }
+
+    public AppUser getUserLogin(String username, String password) {
+        try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
+            ArrayList<AppUser> list = new ArrayList<>();
+
+            String query = "select * from AppUser where username = ? and password = ?";
+            Cursor cursor = db.rawQuery(query, new String[]{username,password});
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                AppUser user = new AppUser(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getBlob(4), cursor.getString(5));
+                list.add(user);
+                cursor.moveToNext();
+            }
+            db.close();
+            return list.get(0);
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Lỗi kết nối", Toast.LENGTH_LONG).show();
+            return null;
+        }
     }
 }

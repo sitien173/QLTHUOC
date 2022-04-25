@@ -18,6 +18,8 @@
             android:name=".UploadFile"
             android:exported="false" />
         <activity android:name=".Registration" />
+        <activity android:name=".ListUser" />
+        <activity android:name=".ProfileUser" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

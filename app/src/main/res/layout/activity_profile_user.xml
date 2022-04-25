@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProfileUser">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#D9DDE8">
+
+            <ImageButton
+                android:id="@+id/ibtnPrev"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_selector"
+                android:src="@drawable/left" />
+
+            <ImageButton
+                android:id="@+id/ibtnSave"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/button_selector"
+                android:src="@drawable/done" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            app:srcCompat="@drawable/avatar" />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="220dp"
+            android:gravity="center"
+            android:text="Đức Tâm" />
+
+        <TextView
+            android:id="@+id/tvLabelUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginTop="300dp"
+            android:focusable="false"
+            android:gravity="center_vertical"
+            android:paddingStart="7dp"
+            android:text="UserName"
+            android:textAllCaps="true" />
+
+
+        <EditText
+            android:id="@+id/edtUserName"
+            android:layout_width="228dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="300dp"
+            android:background="@drawable/custom_input"
+            android:gravity="center_vertical"
+            android:inputType="text"
+            android:paddingStart="7dp" />
+
+        <ImageButton
+            android:id="@+id/ibtnEdtUserName"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="300dp"
+            android:layout_marginEnd="15dp"
+            android:background="#00FFFFFF"
+            android:src="@drawable/edit_32" />
+
+        <TextView
+            android:id="@+id/tvLabelHoTen"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="370dp"
+            android:gravity="center_vertical"
+            android:paddingStart="7dp"
+            android:text="Họ tên"
+            android:textAllCaps="true" />
+
+        <EditText
+            android:id="@+id/edtHoTen"
+            android:layout_width="225dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="370dp"
+            android:background="@drawable/custom_input"
+            android:gravity="center_vertical"
+            android:inputType="text"
+            android:paddingStart="7dp" />
+
+        <ImageButton
+            android:id="@+id/ibtnEdtHoten"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="370dp"
+            android:layout_marginEnd="15dp"
+            android:background="#00FFFFFF"
+            android:src="@drawable/edit_32" />
+
+        <TextView
+            android:id="@+id/tvLabelPasword"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="440dp"
+            android:gravity="center_vertical"
+            android:paddingStart="7dp"
+            android:text="Password"
+            android:textAllCaps="true" />
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="225dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="440dp"
+            android:background="@drawable/custom_input"
+            android:gravity="center_vertical"
+            android:inputType="textPassword"
+            android:paddingStart="7dp" />
+
+        <ImageButton
+            android:id="@+id/ibtnEdtPass"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="440dp"
+            android:layout_marginEnd="15dp"
+            android:background="#00FFFFFF"
+            android:src="@drawable/edit_32" />
+
+        <TextView
+            android:id="@+id/tvLabelRole"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="510dp"
+            android:gravity="center_vertical"
+            android:paddingStart="7dp"
+            android:text="Role"
+            android:textAllCaps="true" />
+
+        <Spinner
+            android:id="@+id/dropRole"
+            android:layout_width="225dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="510dp"
+            android:layout_marginBottom="7dp"
+            android:background="@drawable/custom_input"
+            android:drawSelectorOnTop="true" />
+
+    </RelativeLayout>
+</RelativeLayout>

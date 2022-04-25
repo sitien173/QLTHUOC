@@ -17,6 +17,7 @@ import com.ptithcm.qlthuoc.Entity.AppUser;
 import java.util.ArrayList;
 import java.util.HashSet;
 import com.ptithcm.qlthuoc.Entity.*;
+import com.ptithcm.qlthuoc.Order.AddInfoCustomer;
 
 public class MainActivity extends AppCompatActivity {
     EditText txtUsername,txtPassword;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 // redirect to dashboard
                 Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
+
                 startActivity(new Intent(this, ListUser.class));
             }
             else

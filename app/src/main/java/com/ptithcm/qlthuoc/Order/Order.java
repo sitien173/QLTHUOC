@@ -13,6 +13,7 @@ import com.ptithcm.qlthuoc.R;
 
 
 public class Order extends AppCompatActivity {
+    String username, phone, address;
     TextView txtUsername, txtPhone, txtAddress, txtTotalOrder;
     Button btnBack, btnExportOrder, btnAddOrderLine;
     DbContext dbContext;
@@ -26,6 +27,18 @@ public class Order extends AppCompatActivity {
         setConfig();
         setControl();
         setEvent();
+
+        // get and set value from screen add_info_customer to product_order
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            username = extras.getString("username");
+            phone = extras.getString("phone");
+            address = extras.getString("address");
+
+            txtUsername.setText("Khách hàng: " + username);
+            txtPhone.setText("Số ĐT: " + phone);
+            txtAddress.setText("Địa chỉ: " + address);
+        }
     }
 
     private void setConfig() {
@@ -40,7 +53,11 @@ public class Order extends AppCompatActivity {
         });
 
         btnExportOrder.setOnClickListener(view -> {
-            startActivity(new Intent(this, OrderSuccess.class));
+            Intent i = new Intent(Order.this, OrderSuccess.class);
+            i.putExtra("username", username);
+            i.putExtra("phone", phone);
+            i.putExtra("address", address);
+            startActivity(i);
         });
 
         btnAddOrderLine.setOnClickListener(view -> {

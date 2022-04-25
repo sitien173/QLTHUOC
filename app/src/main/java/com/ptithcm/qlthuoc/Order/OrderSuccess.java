@@ -14,6 +14,7 @@ import com.ptithcm.qlthuoc.R;
 
 
 public class OrderSuccess extends AppCompatActivity {
+    String username, phone, address;
     TextView txtUsername, txtPhone, txtAddress, txtTotalOrder;
     Button btnNewOrder;
     DbContext dbContext;
@@ -27,6 +28,19 @@ public class OrderSuccess extends AppCompatActivity {
         setConfig();
         setControl();
         setEvent();
+
+        // get and set value from screen add_info_customer to product_order
+        Bundle extras = getIntent().getExtras();
+        System.out.println("extras" + extras);
+        if (extras != null) {
+            username = extras.getString("username");
+            phone = extras.getString("phone");
+            address = extras.getString("address");
+
+            txtUsername.setText("Khách hàng: " + username);
+            txtPhone.setText("Số ĐT: " + phone);
+            txtAddress.setText("Địa chỉ: " + address);
+        }
     }
 
     private void setConfig() {
@@ -37,7 +51,7 @@ public class OrderSuccess extends AppCompatActivity {
 
     private void setEvent() {
         btnNewOrder.setOnClickListener(view -> {
-            startActivity(new Intent(this, Order.class));
+            startActivity(new Intent(this, AddInfoCustomer.class));
         });
     }
 

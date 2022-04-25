@@ -14,6 +14,7 @@ import com.ptithcm.qlthuoc.R;
 
 
 public class ProductOrder extends AppCompatActivity {
+    String username, phone, address;
     Button btnAddProduct, btnBack;
     DbContext dbContext;
     SharedPreferences sharedPreferences;
@@ -26,6 +27,14 @@ public class ProductOrder extends AppCompatActivity {
         setConfig();
         setControl();
         setEvent();
+
+        // get and set value from screen add_info_customer to product_order
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            username = extras.getString("username");
+            phone = extras.getString("phone");
+            address = extras.getString("address");
+        }
     }
 
     private void setConfig() {
@@ -36,7 +45,11 @@ public class ProductOrder extends AppCompatActivity {
 
     private void setEvent() {
         btnAddProduct.setOnClickListener(view -> {
-            startActivity(new Intent(this, Order.class));
+            Intent i = new Intent(ProductOrder.this, Order.class);
+            i.putExtra("username", username);
+            i.putExtra("phone", phone);
+            i.putExtra("address", address);
+            startActivity(i);
         });
 
         btnBack.setOnClickListener(view -> {

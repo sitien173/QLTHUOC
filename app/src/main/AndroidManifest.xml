@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ptithcm.qlthuoc">
+    package="com.ptithcm.qlthuoc" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.camera" />
 
 
@@ -15,7 +16,16 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.QLTHUOC">
+        android:theme="@style/Theme.QLTHUOC" >
+        <activity
+            android:name=".EditDrug"
+            android:exported="false" />
+        <activity
+            android:name=".AddDrug"
+            android:exported="false" />
+        <activity
+            android:name=".QuanLiThuoc"
+            android:exported="false" />
         <activity
             android:name=".UploadFile"
             android:exported="false" />
@@ -24,7 +34,7 @@
         <activity android:name=".ProfileUser" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

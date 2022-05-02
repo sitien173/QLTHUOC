@@ -14,6 +14,23 @@ public class Thuoc implements Serializable {
     private float dongia;
     private Collection<Thuoc_NhaThuoc> nhaThuocs;
 
+    public Thuoc(int id, String tenthuoc) {
+        this.id = id;
+        this.tenthuoc = tenthuoc;
+    }
+
+    public Thuoc() {
+    }
+
+    public Thuoc(int id, String tenthuoc, String thanhphan, String donvitinh, int soluong, float dongia) {
+        this.id = id;
+        this.tenthuoc = tenthuoc;
+        this.thanhphan = thanhphan;
+        this.donvitinh = donvitinh;
+        this.soluong = soluong;
+        this.dongia = dongia;
+    }
+
     public int getId() {
         return id;
     }

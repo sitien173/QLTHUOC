@@ -32,5 +32,16 @@
             android:id="@+id/btnSelectFromCamera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <Button
+            android:textColor="@color/light"
+            android:background="@drawable/button_btn"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp"
+            android:text="Exit"
+            android:id="@+id/btnExit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </LinearLayout>

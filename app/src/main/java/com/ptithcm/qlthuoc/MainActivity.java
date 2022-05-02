@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
             if(islogin)
             {
                 // redirect to dashboard
-                Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
                 redirect();
                 //startActivity(new Intent(this, ListUser.class));
             }

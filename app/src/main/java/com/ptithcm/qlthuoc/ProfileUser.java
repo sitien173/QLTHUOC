@@ -37,7 +37,6 @@ public class ProfileUser extends AppCompatActivity {
 
     DbContext dbContext = null;
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
 
     TextView tvLabelRole;
     ImageButton ibtnPrev;
@@ -55,7 +54,7 @@ public class ProfileUser extends AppCompatActivity {
     byte[] fileAvatar = null;
     private static final int REQUEST_UPLOAD_FILE = 102;
 
-    AppUser userLogin;
+   // AppUser userLogin;
     AppUser userOld;
     AppUser userNew;
 
@@ -63,8 +62,6 @@ public class ProfileUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_user);
-        userLogin = MainActivity.userLogin;
-
         Intent intent = getIntent();
         setConfig();
         setControl();
@@ -161,7 +158,6 @@ public class ProfileUser extends AppCompatActivity {
 
     private void setConfig() {
         sharedPreferences = getSharedPreferences("my_data.xml", MODE_PRIVATE);
-        editor = sharedPreferences.edit();
         dbContext = new DbContext(this);
     }
 
@@ -197,7 +193,7 @@ public class ProfileUser extends AppCompatActivity {
         String roleOld = intent.getStringExtra("role");
 
 //        userLogin = (AppUser)intent.getSerializableExtra("userLogin");
-        userLogin = MainActivity.userLogin;
+       // userLogin = MainActivity.userLogin;
         userOld = getUerDb(usernameOld,hotenOld);
         fileAvatar = userOld.getAvatar();
 
@@ -218,8 +214,8 @@ public class ProfileUser extends AppCompatActivity {
                 spDropRole.setSelection(i);
             }
         }
-
-        if(userLogin.getRole().equalsIgnoreCase("USER")) {
+        String role = sharedPreferences.getString("role", "");
+        if(role.equalsIgnoreCase("USER")) {
             tvLabelRole.setVisibility(View.GONE);
             spDropRole.setVisibility(View.GONE);
         }

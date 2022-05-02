@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         // redirect
         if(sharedPreferences.getBoolean("is_login", false)){
-            Toast.makeText(this, "Bạn đã login", Toast.LENGTH_LONG).show();
+            redirect();
         }
     }
 
@@ -45,6 +45,23 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("my_data.xml", MODE_PRIVATE);
         editor = sharedPreferences.edit();
         dbContext = new DbContext(this);
+    }
+
+    private void redirect()
+    {
+        String role = sharedPreferences.getString("role", "");
+        switch (role)
+        {
+            case "ADMIN": {
+                startActivity(new Intent(this, AdminDashboard.class));
+                break;
+            }
+            case "USER": {
+                startActivity(new Intent(this, StaffDashboard.class));
+                break;
+            }
+            default: break;
+        }
     }
 
     private void setEvent() {
@@ -57,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
             {
                 // redirect to dashboard
                 Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
-
-                startActivity(new Intent(this, ListUser.class));
+                redirect();
+                //startActivity(new Intent(this, ListUser.class));
             }
             else
             {

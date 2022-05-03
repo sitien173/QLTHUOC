@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 
 public class Order extends AppCompatActivity {
+    String username, phone, address;
     TextView txtUsername, txtPhone, txtAddress, txtTotalOrder;
     Button btnBack, btnExportOrder, btnAddOrderLine;
     AppUser customer;
@@ -58,7 +59,11 @@ public class Order extends AppCompatActivity {
         });
 
         btnExportOrder.setOnClickListener(view -> {
-            startActivity(new Intent(this, OrderSuccess.class));
+            Intent i = new Intent(Order.this, OrderSuccess.class);
+            i.putExtra("username", username);
+            i.putExtra("phone", phone);
+            i.putExtra("address", address);
+            startActivity(i);
         });
 
         btnAddOrderLine.setOnClickListener(view -> {

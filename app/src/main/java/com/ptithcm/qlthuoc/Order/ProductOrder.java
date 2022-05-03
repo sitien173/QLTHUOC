@@ -32,6 +32,7 @@ import java.util.List;
 public class ProductOrder extends AppCompatActivity {
     Button btnBack;
     //Button btnAddProduct;
+    String username, phone, address;
     DbContext dbContext;
     private ListView listView;
     OrderLineAdapter orderLineAdapter;

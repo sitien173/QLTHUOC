@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ptithcm.qlthuoc.DbContext;
+import com.ptithcm.qlthuoc.Entity.AppUser;
 import com.ptithcm.qlthuoc.R;
 
 
@@ -47,7 +48,11 @@ public class AddInfoCustomer extends AppCompatActivity {
                 return;
             }
 
-            startActivity(new Intent(this, ProductOrder.class));
+            byte[] avatarTemp = null;
+            AppUser customer = new AppUser(username, "1", username, avatarTemp, "CUSTOMER", address, phone);
+            Intent i = new Intent(AddInfoCustomer.this, ProductOrder.class);
+            i.putExtra("customer", customer);
+            startActivity(i);
         });
     }
 

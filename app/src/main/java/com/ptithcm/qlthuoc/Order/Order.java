@@ -2,19 +2,30 @@ package com.ptithcm.qlthuoc.Order;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ptithcm.qlthuoc.DbContext;
+import com.ptithcm.qlthuoc.Entity.AppUser;
+import com.ptithcm.qlthuoc.Entity.CT_BanLe;
+import com.ptithcm.qlthuoc.Entity.Thuoc;
 import com.ptithcm.qlthuoc.R;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class Order extends AppCompatActivity {
     TextView txtUsername, txtPhone, txtAddress, txtTotalOrder;
     Button btnBack, btnExportOrder, btnAddOrderLine;
+    AppUser customer;
+    private int NOT_CREATED_ORDER = 2;
     DbContext dbContext;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -26,6 +37,13 @@ public class Order extends AppCompatActivity {
         setConfig();
         setControl();
         setEvent();
+
+        customer = (AppUser) getIntent().getSerializableExtra("customer");
+        if(customer != null) {
+            txtUsername.setText("Khách hàng: " + customer.getUsername());
+            txtPhone.setText("Số ĐT: " + customer.getPhone());
+            txtAddress.setText("Địa chỉ: " + customer.getAddress());
+        }
     }
 
     private void setConfig() {
@@ -44,8 +62,26 @@ public class Order extends AppCompatActivity {
         });
 
         btnAddOrderLine.setOnClickListener(view -> {
-            startActivity(new Intent(this, ProductOrder.class));
+            Intent i = new Intent(Order.this, ProductOrder.class);
+            i.putExtra("customer", customer);
+            startActivity(i);
         });
+    }
+
+    private void getTotalOrder() {
+        try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
+            ArrayList<CT_BanLe> listCTBanLe = new ArrayList<>();
+
+            String query = "SELECT * FROM CT_BanLe WHERE status = 2";
+
+            Cursor cursor = db.rawQuery(query, null);
+            cursor.moveToFirst();
+
+            while(cursor.isAfterLast() == false) {
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Lỗi kết nối", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setControl() {

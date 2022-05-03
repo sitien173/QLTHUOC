@@ -42,5 +42,9 @@ public class AdminDashboard extends AppCompatActivity {
             startActivity(new Intent(this, AddInfoCustomer.class));
         });
 
+        medicine.setOnClickListener(view -> {
+            startActivity(new Intent(this, QuanLiThuoc.class));
+        });
+
     }
 }

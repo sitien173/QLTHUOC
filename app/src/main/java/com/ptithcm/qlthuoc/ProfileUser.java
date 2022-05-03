@@ -228,7 +228,7 @@ public class ProfileUser extends AppCompatActivity {
         {
             if(requestCode == REQUEST_UPLOAD_FILE)
             {
-                fileAvatar = data.getByteArrayExtra("byte");
+                fileAvatar = data.getByteArrayExtra("img");
 //                System.out.println("File Aatar: "+fileAvatar);
                 Uri uri = data.getData();
                 System.out.println("uri :" +uri);

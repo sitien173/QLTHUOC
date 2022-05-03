@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -66,7 +67,7 @@ public class Registration extends AppCompatActivity {
             String password = txtPassword.getText().toString().trim();
             String hoten = txtHoTen.getText().toString().trim();
             byte[] avt = file;
-            String role = "USER";
+            String role = "CUSTOMER";
             try (SQLiteDatabase db = dbContext.getWritableDatabase())
             {
                 ContentValues ct = new ContentValues();
@@ -95,6 +96,7 @@ public class Registration extends AppCompatActivity {
     }
 
 
+    @SuppressLint("WrongViewCast")
     private void setControl() {
         txtUsername = findViewById(R.id.txtUsername);
         txtPassword = findViewById(R.id.txtPassword);
@@ -112,9 +114,10 @@ public class Registration extends AppCompatActivity {
         {
             if(requestCode == REQUEST_UPLOAD_FILE)
             {
-                file = data.getByteArrayExtra("byte");
-                Uri uri = data.getData();
-                avatar.setImageURI(uri);
+                file = data.getByteArrayExtra("img");
+                Bitmap bitmap = BitmapFactory.decodeByteArray(file, 0, file.length);
+                avatar.setBackground(new BitmapDrawable(Bitmap.createScaledBitmap(bitmap, 1000, 1000,false)));
+                // avatar.setImageBitmap(bitmap);
             }
         }
     }

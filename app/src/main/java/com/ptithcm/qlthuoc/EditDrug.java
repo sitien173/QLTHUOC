@@ -24,7 +24,7 @@ import java.util.List;
 public class EditDrug extends AppCompatActivity {
     Thuoc thuoc ;
     EditText txtTenThuoc, txtThanhPhan, txtDonViTinh, txtSoLuong, txtDonGia;
-    Button btnEdit, btnSelectPhoto;
+    Button btnEdit, btnSelectPhoto, btnBack;
     ImageView imgThuoc;
     byte[] file;
     private static final int REQUEST_UPLOAD_FILE = 102;
@@ -61,14 +61,23 @@ public class EditDrug extends AppCompatActivity {
                 startActivity(new Intent(EditDrug.this, QuanLiThuoc.class));
             }
         });
-
         btnSelectPhoto.setOnClickListener(view -> {
             Intent intent = new Intent(this, UploadFile.class);
             startActivityForResult(intent, REQUEST_UPLOAD_FILE);
         });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(EditDrug.this, QuanLiThuoc.class));
+            }
+
+            ;
+        });
     }
     private void setControl() {
         btnEdit = findViewById(R.id.btnEdit);
+        btnBack = findViewById(R.id.buttonBack) ;
         txtTenThuoc = findViewById(R.id.editTextTextPersonName6);
         txtThanhPhan = findViewById(R.id.editTextTextPersonName7);
         txtDonViTinh = findViewById(R.id.editTextTextPersonName8);

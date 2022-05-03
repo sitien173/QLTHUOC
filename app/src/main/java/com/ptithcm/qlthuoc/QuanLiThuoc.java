@@ -27,7 +27,7 @@ public class QuanLiThuoc extends AppCompatActivity implements RecyclerListener {
     private ArrayList<Thuoc> listData = new ArrayList<>(); ;
     RecyclerView recyclerView ;
     drugAdapter drugAdapter;
-    Button btnThem;
+    Button btnThem , btnBack;
     DbContext dbContext  = new DbContext(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,14 @@ public class QuanLiThuoc extends AppCompatActivity implements RecyclerListener {
                 startActivity(new Intent(QuanLiThuoc.this, AddDrug.class));
             }
         });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(QuanLiThuoc.this, AdminDashboard.class));
+            }
+        });
 //        btnThem.setOnClickListener(view -> {
 //            startActivity(new Intent(this, AddDrug.class));
 //        });
@@ -61,6 +69,7 @@ public class QuanLiThuoc extends AppCompatActivity implements RecyclerListener {
     private void setControl() {
         recyclerView = findViewById(R.id.recycler);
         btnThem = findViewById(R.id.btnThem);
+        btnBack = findViewById(R.id.BackDashboard);
     }
 //    public void addDrug() {
 //

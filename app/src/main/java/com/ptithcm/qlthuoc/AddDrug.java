@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +18,7 @@ import android.widget.Toast;
 public class AddDrug extends AppCompatActivity {
 
     EditText txtTenThuoc, txtThanhPhan, txtDonViTinh, txtSoLuong, txtDonGia;
-    Button btnAdd, uploadImg;
+    Button btnAdd, uploadImg,btnBack;
     ImageView imgThuoc;
     byte[] file;
     private static final int REQUEST_UPLOAD_FILE = 102;
@@ -35,21 +34,27 @@ public class AddDrug extends AppCompatActivity {
 
     private void setEvent() {
        btnAdd.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               addDrug();
-               startActivity(new Intent(AddDrug.this, QuanLiThuoc.class));
-           }
-       });
-
+                                     @Override
+                                     public void onClick(View view) {
+                                         addDrug();
+                                         startActivity(new Intent(AddDrug.this, QuanLiThuoc.class));
+                                     }
+                                 });
         uploadImg.setOnClickListener(view -> {
-            Intent intent = new Intent(this, UploadFile.class);
-            startActivityForResult(intent, REQUEST_UPLOAD_FILE);
+                    Intent intent = new Intent(this, UploadFile.class);
+                    startActivityForResult(intent, REQUEST_UPLOAD_FILE);
+                });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddDrug.this, QuanLiThuoc.class));
+            }
         });
     }
 
     private void setControl() {
         btnAdd = findViewById(R.id.btnAdd);
+        btnBack = findViewById(R.id.Back);
         txtTenThuoc = findViewById(R.id.editTextTextPersonName);
         txtThanhPhan = findViewById(R.id.editTextTextPersonName2);
         txtDonViTinh = findViewById(R.id.editTextTextPersonName3);

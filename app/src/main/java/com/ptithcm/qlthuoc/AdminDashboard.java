@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ptithcm.qlthuoc.Order.AddInfoCustomer;
+
 public class AdminDashboard extends AppCompatActivity {
     ImageView imgMenu;
     ImageView orders, users, medicine;
@@ -34,6 +36,10 @@ public class AdminDashboard extends AppCompatActivity {
 
         users.setOnClickListener(view -> {
             startActivity(new Intent(this, ListUser.class));
+        });
+
+        orders.setOnClickListener(view -> {
+            startActivity(new Intent(this, AddInfoCustomer.class));
         });
 
     }

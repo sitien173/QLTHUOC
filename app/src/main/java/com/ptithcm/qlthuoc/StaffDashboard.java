@@ -29,5 +29,10 @@ public class StaffDashboard extends AppCompatActivity {
             setTitle(null);
             setContentView(R.menu.staff_navigative_menu);
         });
+
+        layoutCrOrders.setOnClickListener(view -> {
+            setTitle(null);
+            setContentView(R.layout.add_info_customer);
+        });
     }
 }

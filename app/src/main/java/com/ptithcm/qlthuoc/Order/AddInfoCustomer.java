@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +15,7 @@ import com.ptithcm.qlthuoc.R;
 
 
 public class AddInfoCustomer extends AppCompatActivity {
-    TextView txtUsername, txtPhone, txtAddress;
+    EditText txtUsername, txtPhone, txtAddress;
     Button btnAddInfoCustomer;
     DbContext dbContext;
     SharedPreferences sharedPreferences;
@@ -36,6 +38,15 @@ public class AddInfoCustomer extends AppCompatActivity {
 
     private void setEvent() {
         btnAddInfoCustomer.setOnClickListener(view -> {
+            String username = txtUsername.getText().toString().trim();
+            String phone = txtPhone.getText().toString().trim();
+            String address = txtAddress.getText().toString().trim();
+
+            if(username.equals("") || phone.equals("") || address.equals("")) {
+                Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_LONG).show();
+                return;
+            }
+
             startActivity(new Intent(this, ProductOrder.class));
         });
     }

@@ -142,10 +142,36 @@
         android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="208dp"
         android:text="Sửa"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName10" />
+
+    <ImageView
+        android:id="@+id/imgThuoc"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="272dp"
+        android:src="@drawable/medicine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSelectPhoto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName10" />
+
+    <Button
+        android:id="@+id/btnSelectPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="98dp"
+        android:layout_marginBottom="62dp"
+        android:text="Chọn ảnh"
+        app:layout_constraintBottom_toTopOf="@+id/btnEdit"
+        app:layout_constraintStart_toEndOf="@+id/imgThuoc"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName10" />
 </androidx.constraintlayout.widget.ConstraintLayout>

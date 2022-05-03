@@ -88,7 +88,9 @@ public class QuanLiThuoc extends AppCompatActivity implements RecyclerListener {
         cursor.moveToFirst();
 
         while(cursor.isAfterLast() == false) {
+            byte[] image = cursor.getBlob(5);
             Thuoc thuoc = new Thuoc(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3),cursor.getInt(4),cursor.getFloat(6) );
+            thuoc.setHinhanh(image);
             listThuoc.add(thuoc);
             cursor.moveToNext();
         }

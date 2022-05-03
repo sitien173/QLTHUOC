@@ -133,34 +133,37 @@
 
     <ImageView
         android:id="@+id/imgThuoc"
-        android:layout_width="156dp"
-        android:layout_height="143dp"
+        android:layout_width="106dp"
+        android:layout_height="126dp"
         android:layout_marginStart="14dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="46dp"
-        android:layout_marginBottom="76dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAdd"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSelectPhoto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/medicine" />
+
     <Button
         android:id="@+id/btnSelectPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginStart="12dp"
         android:layout_marginBottom="85dp"
         android:text="Chọn ảnh"
-        app:layout_constraintBottom_toTopOf="@+id/btnAdd"
-        app:layout_constraintStart_toEndOf="@+id/imgThuoc"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
+        app:layout_constraintVertical_bias="0.036" />
 
     <Button
         android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="244dp"
+        android:layout_marginTop="72dp"
         android:text="Thêm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

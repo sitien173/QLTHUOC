@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_shadow_start_color"
-    tools:context=".MainActivity">
+    tools:context=".AdminDashboard">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
@@ -28,6 +28,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
+            android:id="@+id/adminInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -39,16 +40,6 @@
             app:layout_constraintStart_toEndOf="@+id/hello"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageView
-            android:id="@+id/iconMenu"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_menu"
-            app:layout_constraintBottom_toBottomOf="@id/hello"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/hello"
-            app:tint="@color/white"
-            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <ScrollView

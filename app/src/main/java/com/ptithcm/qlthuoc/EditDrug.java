@@ -20,7 +20,7 @@ import java.util.List;
 public class EditDrug extends AppCompatActivity {
     Thuoc thuoc ;
     EditText txtTenThuoc, txtThanhPhan, txtDonViTinh, txtSoLuong, txtDonGia;
-    Button btnEdit;
+    Button btnEdit,btnBack;
     DbContext dbContext = new DbContext(this);
 
 
@@ -51,9 +51,16 @@ public class EditDrug extends AppCompatActivity {
                 startActivity(new Intent(EditDrug.this, QuanLiThuoc.class));
             }
         });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(EditDrug.this, QuanLiThuoc.class));
+            }
+        });
     }
     private void setControl() {
         btnEdit = findViewById(R.id.btnEdit);
+        btnBack = findViewById(R.id.buttonBack) ;
         txtTenThuoc = findViewById(R.id.editTextTextPersonName6);
         txtThanhPhan = findViewById(R.id.editTextTextPersonName7);
         txtDonViTinh = findViewById(R.id.editTextTextPersonName8);

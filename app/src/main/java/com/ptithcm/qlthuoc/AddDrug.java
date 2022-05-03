@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class AddDrug extends AppCompatActivity {
 
     EditText txtTenThuoc, txtThanhPhan, txtDonViTinh, txtSoLuong, txtDonGia;
-    Button btnAdd;
+    Button btnAdd,btnBack;
     DbContext dbContext = new DbContext(this);
 
     @Override
@@ -33,10 +33,17 @@ public class AddDrug extends AppCompatActivity {
                startActivity(new Intent(AddDrug.this, QuanLiThuoc.class));
            }
        });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddDrug.this, QuanLiThuoc.class));
+            }
+        });
     }
 
     private void setControl() {
         btnAdd = findViewById(R.id.btnAdd);
+        btnBack = findViewById(R.id.Back);
         txtTenThuoc = findViewById(R.id.editTextTextPersonName);
         txtThanhPhan = findViewById(R.id.editTextTextPersonName2);
         txtDonViTinh = findViewById(R.id.editTextTextPersonName3);

@@ -2,6 +2,7 @@ package com.ptithcm.qlthuoc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,22 +11,25 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.ptithcm.qlthuoc.Entity.Thuoc;
 
 import java.util.List;
 
 public class EditDrug extends AppCompatActivity {
-
+    Thuoc thuoc ;
     EditText txtTenThuoc, txtThanhPhan, txtDonViTinh, txtSoLuong, txtDonGia;
     Button btnEdit;
     DbContext dbContext = new DbContext(this);
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        thuoc = (Thuoc) getIntent().getSerializableExtra("id");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_drug);
-      Thuoc thuoc = (Thuoc) getIntent().getSerializableExtra("id");
+
 
       Log.d("BBB",String.valueOf(thuoc.getSoluong()));
       Log.d("BBB",String.valueOf(thuoc.getDongia()));
@@ -43,7 +47,8 @@ public class EditDrug extends AppCompatActivity {
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                updateDrug(thuoc);
+                startActivity(new Intent(EditDrug.this, QuanLiThuoc.class));
             }
         });
     }
@@ -54,6 +59,19 @@ public class EditDrug extends AppCompatActivity {
         txtDonViTinh = findViewById(R.id.editTextTextPersonName8);
         txtSoLuong = findViewById(R.id.editTextTextPersonName9);
         txtDonGia = findViewById(R.id.editTextTextPersonName10);
+    }
+
+    public void updateDrug(Thuoc thuoc) {
+        SQLiteDatabase db = dbContext.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("tenthuoc", txtTenThuoc.getText().toString().trim());
+        values.put("thanhphan", txtThanhPhan.getText().toString().trim());
+        values.put("donvitinh", txtDonViTinh.getText().toString().trim());
+        values.put("soluong", Integer.parseInt(txtSoLuong.getText().toString().trim()));
+        values.put("dongia", Float.parseFloat(txtDonGia.getText().toString().trim()));
+        db.update("Thuoc", values, "Id = ?", new String[] { String.valueOf(thuoc.getId()) });
+        Toast.makeText(this, "Sửa thành công", Toast.LENGTH_LONG).show();
     }
 
 //    public Thuoc getThuoc(int id) {

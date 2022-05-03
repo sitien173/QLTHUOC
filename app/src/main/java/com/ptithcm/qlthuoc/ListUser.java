@@ -27,6 +27,7 @@ import java.util.Arrays;
 
 public class ListUser extends AppCompatActivity {
 
+    ImageButton btnBack;
     ListView lsvUser;
     ImageButton btnEdit;
     ImageButton btnDel;
@@ -47,6 +48,8 @@ public class ListUser extends AppCompatActivity {
         setContentView(R.layout.activity_list_user);
 
         lsvUser =  (ListView) findViewById(R.id.lsvUser);
+        btnBack = (ImageButton) findViewById(R.id.ibtnBack);
+
 //        btnDel = findViewById(R.id.btnDel);
 //        btnEdit = findViewById(R.id.btnEdit);
         System.out.println(" list user");
@@ -61,6 +64,10 @@ public class ListUser extends AppCompatActivity {
 
         adapterUser = new AdapterUser(this, R.layout.layout_item, arrlistUser,dbContext);
         lsvUser.setAdapter(adapterUser);
+
+        btnBack.setOnClickListener(view -> {
+            finish();
+        });
 
         lsvUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

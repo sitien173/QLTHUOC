@@ -25,9 +25,9 @@ public class StaffDashboard extends AppCompatActivity {
 
     @SuppressLint("ResourceType")
     private void  setEvent(){
-        imgMenu.setOnClickListener(view -> {
+        /*imgMenu.setOnClickListener(view -> {
             setTitle(null);
-            setContentView(R.menu.staff_navigative_menu);
-        });
+            setContentView(R.menu.);
+        });*/
     }
 }

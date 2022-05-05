@@ -37,8 +37,10 @@ public class DbContext extends SQLiteOpenHelper {
                         "\"username\" TEXT NOT NULL UNIQUE, " +
                         "\"password\" TEXT NOT NULL, " +
                         "\"hoten\" TEXT NOT NULL, " +
-                        "\"avatar\" BLOB," +
-                        "\"role\" TEXT NOT NULL); \n";
+                        "\"avatar\" BLOB, " +
+                        "\"role\" TEXT NOT NULL, " +
+                        "\"phone\" TEXT," +
+                        "\"address\" TEXT); \n";
         String table2 = "CREATE TABLE \"Thuoc\" ( " +
                 " \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
                 " \"tenthuoc\" TEXT NOT NULL, " +
@@ -69,7 +71,9 @@ public class DbContext extends SQLiteOpenHelper {
         String table6 = "CREATE TABLE \"CT_BanLe\" ( " +
                 " \"id_thuoc\" INTEGER DEFAULT NULL REFERENCES \"Thuoc\"(\"id\"), " +
                 " \"id_hoadon\" INTEGER DEFAULT NULL REFERENCES \"HoaDon\"(\"id\"), " +
+                " \"id_customer\" INTEGER DEFAULT NULL REFERENCES \"AppUser\"(\"id\"), " +
                 " \"soluong\" INTEGER DEFAULT NULL, " +
+                " \"status\" INTEGER DEFAULT NULL, " +
                 " \"total\" FLOAT DEFAULT NULL" +
                 ");";
 

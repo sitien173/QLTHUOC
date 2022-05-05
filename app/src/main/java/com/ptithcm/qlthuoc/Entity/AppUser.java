@@ -11,6 +11,7 @@ public class AppUser implements Serializable {
     private String role;
     private String address;
     private String phone;
+    private int id;
 
     public AppUser(){
         this.username = "";
@@ -20,8 +21,9 @@ public class AppUser implements Serializable {
         this.role = "";
         this.address = "";
         this.phone = "";
+        this.id = 0;
     }
-    public AppUser(String username,String password, String hoten, byte[] avatar, String role, String address, String phone){
+    public AppUser(String username, String password, String hoten, byte[] avatar, String role, String address, String phone){
         this.username = username;
         this.password = password;
         this.hoten = hoten;
@@ -85,5 +87,13 @@ public class AppUser implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

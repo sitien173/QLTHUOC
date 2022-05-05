@@ -42,7 +42,7 @@ public class AdapterUser extends ArrayAdapter<AppUser> {
     ArrayList<AppUser> data;
     AppUser userLogin;
 
-public AdapterUser(@NonNull Context context, int resource, @NonNull ArrayList<AppUser> objects,DbContext dbContext) {
+public AdapterUser(@NonNull Context context, int resource, @NonNull ArrayList<AppUser> objects, DbContext dbContext) {
         super(context, resource, objects);
         this.context=context;
         this.data = objects;

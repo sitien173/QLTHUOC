@@ -9,13 +9,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ptithcm.qlthuoc.Entity.AppUser;
+import com.ptithcm.qlthuoc.Order.AddInfoCustomer;
 
 public class StaffDashboard extends AppCompatActivity {
-    TextView orders, staffInfo;
+    TextView orders, staffInfo, layoutCrOrders;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     static AppUser appUser;
@@ -111,7 +113,7 @@ public class StaffDashboard extends AppCompatActivity {
     private void  setEvent(){
         // vỹ xử lí
         orders.setOnClickListener(view -> {
-
+            startActivity(new Intent(this, AddInfoCustomer.class));
         });
 
         layoutCrOrders.setOnClickListener(view -> {

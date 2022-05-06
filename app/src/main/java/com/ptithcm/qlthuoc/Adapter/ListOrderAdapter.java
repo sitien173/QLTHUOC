@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -26,7 +27,10 @@ import com.ptithcm.qlthuoc.Entity.AppUser;
 import com.ptithcm.qlthuoc.Entity.CT_BanLe;
 import com.ptithcm.qlthuoc.Entity.HoaDon;
 import com.ptithcm.qlthuoc.Entity.Thuoc;
+import com.ptithcm.qlthuoc.Order.AdminListOrder;
+import com.ptithcm.qlthuoc.Order.DetailOrder;
 import com.ptithcm.qlthuoc.Order.Order;
+import com.ptithcm.qlthuoc.Order.ProductOrder;
 import com.ptithcm.qlthuoc.R;
 
 import java.util.ArrayList;
@@ -123,7 +127,10 @@ public class ListOrderAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, DetailOrder.class);
+                intent.putExtra("customer", hoaDon.getKhachhang());
+                intent.putExtra("id_hoadon", hoaDon.getId());
+                ((AdminListOrder)context).startActivityForResult(intent,1);
             }
         });
         return convertView;

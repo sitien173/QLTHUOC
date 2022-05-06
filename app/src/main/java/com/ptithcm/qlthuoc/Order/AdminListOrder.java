@@ -28,6 +28,7 @@ import java.util.ArrayList;
 public class AdminListOrder extends AppCompatActivity {
     Button btnNewOrder, btnBack;
     DbContext dbContext;
+    AppUser customer;
     ListView listView;
     ArrayList<HoaDon> listHoaDon = new ArrayList<>();
     ListOrderAdapter listOrderAdapter;

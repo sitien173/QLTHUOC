@@ -104,23 +104,6 @@
     </LinearLayout>
 
     <!-- Add item order line -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".20"
-        android:background="@drawable/my_border"
-        >
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawableLeft="@drawable/ic_add"
-            android:layout_gravity="center_vertical"
-            android:backgroundTint="@android:color/white"
-            android:layout_marginHorizontal="160dp"
-            android:id="@+id/btnAddOrderLine"
-            />
-    </LinearLayout>
 
     <!-- Info total order -->
     <LinearLayout
@@ -154,15 +137,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <Button
-            android:text="Xuất hóa đơn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".50"
-            android:textStyle="bold"
-            android:id="@+id/btnExportOrder"
-            android:backgroundTint="@color/success"/>
 
         <Button
             android:text="Quay lại"

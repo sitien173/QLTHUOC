@@ -51,7 +51,6 @@ public class OrderSuccess extends AppCompatActivity {
         // get and set value from screen add_info_customer to product_order
         customer = (AppUser) getIntent().getSerializableExtra("customer");
         id_hoadon = (Integer) getIntent().getSerializableExtra("id_hoadon");
-        System.out.println("IDHOADON: " + id_hoadon);
         if(customer != null) {
             txtUsername.setText("Khách hàng: " + customer.getUsername());
             txtPhone.setText("Số ĐT: " + customer.getPhone());

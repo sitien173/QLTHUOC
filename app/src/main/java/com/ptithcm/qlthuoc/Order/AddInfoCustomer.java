@@ -100,7 +100,7 @@ public class AddInfoCustomer extends AppCompatActivity {
             switch (role)
             {
                 case "ADMIN": {
-                    startActivity(new Intent(this, AdminDashboard.class));
+                    startActivity(new Intent(this, AdminListOrder.class));
                     break;
                 }
                 case "USER": {

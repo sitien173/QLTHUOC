@@ -81,6 +81,7 @@ public class Order extends AppCompatActivity {
 
         btnExportOrder.setOnClickListener(view -> {
             Intent i = new Intent(Order.this, OrderSuccess.class);
+            long idHoaDonNew = 0;
 
             float totalOrder = getTotalOrder(listCTBanLe);
 
@@ -90,23 +91,19 @@ public class Order extends AppCompatActivity {
                 ct.put("id_customer", customer.getId());
                 ct.put("total", totalOrder);
                 ct.put("ghichu", "note");
-                long idNew = db.insert("HoaDon",null, ct);
-                System.out.println("ID_HOADON: " + idNew);
+                idHoaDonNew = db.insert("HoaDon",null, ct);
             } catch (Exception e) {
                 Toast.makeText(this,e.getMessage(), Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
 
-            HoaDon hoaDon = new HoaDon(null, customer, "note", totalOrder);
-
             i.putExtra("customer", customer);
-            i.putExtra("id_hoadon", hoaDon.getId());
-
+            i.putExtra("id_hoadon", (int)idHoaDonNew);
             for(CT_BanLe ctBanLe : listCTBanLe) {
                 try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
                     ContentValues values = new ContentValues();
                     values.put("status", 3);
-                    values.put("id_hoadon", hoaDon.getId());
+                    values.put("id_hoadon", (int)idHoaDonNew);
                     db.update("CT_BanLe", values, "status = ? AND id_customer = ? AND id_thuoc = ?", new String[] { String.valueOf(ctBanLe.getStatus()), String.valueOf(ctBanLe.getKhachhang().getId()), String.valueOf(ctBanLe.getThuoc().getId())});
                 } catch (Exception e) {
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();

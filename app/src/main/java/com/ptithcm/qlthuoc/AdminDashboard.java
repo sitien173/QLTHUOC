@@ -13,6 +13,7 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ptithcm.qlthuoc.Order.AddInfoCustomer;
+import com.ptithcm.qlthuoc.Order.AdminListOrder;
 import com.ptithcm.qlthuoc.Order.ProductOrder;
 import com.ptithcm.qlthuoc.Entity.AppUser;
 
@@ -117,7 +118,7 @@ public class AdminDashboard extends AppCompatActivity {
         });
 
         orders.setOnClickListener(view -> {
-            startActivity(new Intent(this, AddInfoCustomer.class));
+            startActivity(new Intent(this, AdminListOrder.class));
         });
 
         medicine.setOnClickListener(view -> {

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Order.Order"
+    >
+
+    <!-- Header order -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/primary"
+        >
+
+        <!-- Title header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Thông tin khách hàng"
+            android:textColor="@color/light"
+            android:textSize="22sp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+        />
+
+        <!-- Info customer -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/avatar"
+                android:contentDescription="user avatar"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/txtAvatar"
+                />
+
+            <!-- Info detail  -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="5dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Khách hàng: "
+                    android:textColor="@color/light"
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    android:id="@+id/txtUsername"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Số ĐT: "
+                    android:textColor="@color/light"
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    android:id="@+id/txtPhone"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Địa chỉ: "
+                    android:textColor="@color/light"
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    android:id="@+id/txtAddress"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Scroll view button -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight=".60"
+        >
+
+        <!-- ListView -->
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listViewOrderline">
+        </ListView>
+    </LinearLayout>
+
+    <!-- Add item order line -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".20"
+        android:background="@drawable/my_border"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_add"
+            android:layout_gravity="center_vertical"
+            android:backgroundTint="@android:color/white"
+            android:layout_marginHorizontal="160dp"
+            android:id="@+id/btnAddOrderLine"
+            />
+    </LinearLayout>
+
+    <!-- Info total order -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".10"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="Tổng đơn hàng:"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:text="1,000,000 VNĐ"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:id="@+id/txtTotalOrder"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!-- Group button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:text="Xuất hóa đơn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:textStyle="bold"
+            android:id="@+id/btnExportOrder"
+            android:backgroundTint="@color/success"/>
+
+        <Button
+            android:text="Quay lại"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:textStyle="bold"
+            android:id="@+id/btnBack"
+            android:backgroundTint="@color/design_default_color_secondary_variant"/>
+
+    </LinearLayout>
+</LinearLayout>

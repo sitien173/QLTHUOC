@@ -49,7 +49,6 @@ public class EditDrug extends AppCompatActivity {
         txtSoLuong.setText(String.valueOf(thuoc.getSoluong()));
         txtDonGia.setText(String.valueOf(thuoc.getDongia()));
 
-
         if(thuoc.getHinhanh() != null && thuoc.getHinhanh().length > 0){
             Bitmap bitmap = BitmapFactory.decodeByteArray(thuoc.getHinhanh(), 0, thuoc.getHinhanh().length);
             imgThuoc.setImageBitmap(bitmap);

@@ -16,27 +16,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ptithcm.qlthuoc.Adapter.CartAdapter;
 import com.ptithcm.qlthuoc.Adapter.OrderLineAdapter;
+import com.ptithcm.qlthuoc.Adapter.OrderSuccessAdapter;
 import com.ptithcm.qlthuoc.DbContext;
 import com.ptithcm.qlthuoc.Entity.AppUser;
 import com.ptithcm.qlthuoc.Entity.CT_BanLe;
-import com.ptithcm.qlthuoc.Entity.HoaDon;
 import com.ptithcm.qlthuoc.Entity.Thuoc;
 import com.ptithcm.qlthuoc.R;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Order extends AppCompatActivity {
+public class DetailOrder extends AppCompatActivity {
     String username, phone, address;
     int customerID;
     TextView txtUsername, txtPhone, txtAddress, txtTotalOrder;
-    Button btnBack, btnExportOrder, btnAddOrderLine;
+    Button btnBack;
     AppUser customer;
     private int NOT_CREATED_ORDER = 2;
-    CartAdapter cartAdapter;
+    OrderSuccessAdapter orderSuccessAdapter;
     private ListView listView;
+    int id_hoadon;
     DbContext dbContext;
     ArrayList<CT_BanLe> listCTBanLe = new ArrayList<>();
     SharedPreferences sharedPreferences;
@@ -45,12 +45,13 @@ public class Order extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_order);
+        setContentView(R.layout.list_orderline_order);
         setConfig();
         setControl();
         setEvent();
 
         customer = (AppUser) getIntent().getSerializableExtra("customer");
+        id_hoadon = (Integer) getIntent().getSerializableExtra("id_hoadon");
         if(customer != null) {
             txtUsername.setText("Khách hàng: " + customer.getUsername());
             txtPhone.setText("Số ĐT: " + customer.getPhone());
@@ -58,12 +59,12 @@ public class Order extends AppCompatActivity {
             customerID = customer.getId();
         }
 
-        listCTBanLe = getListBanLe();
+        listCTBanLe = getListBanLe(id_hoadon);
         float totalOrder = getTotalOrder(listCTBanLe);
         txtTotalOrder.setText(String.valueOf(totalOrder));
         listView = (ListView)findViewById(R.id.listViewOrderline);
-        cartAdapter = new CartAdapter(this, R.layout.item_detail_order, listCTBanLe, dbContext);
-        listView.setAdapter(cartAdapter);
+        orderSuccessAdapter = new OrderSuccessAdapter(this, R.layout.item_order_success, listCTBanLe, dbContext);
+        listView.setAdapter(orderSuccessAdapter);
     }
 
     private void setConfig() {
@@ -74,48 +75,7 @@ public class Order extends AppCompatActivity {
 
     private void setEvent() {
         btnBack.setOnClickListener(view -> {
-            Intent i = new Intent(this, ProductOrder.class);
-            i.putExtra("customer", customer);
-            startActivity(i);
-        });
-
-        btnExportOrder.setOnClickListener(view -> {
-            Intent i = new Intent(Order.this, OrderSuccess.class);
-            long idHoaDonNew = 0;
-
-            float totalOrder = getTotalOrder(listCTBanLe);
-
-            // INSERT HOADON INTO DB
-            try (SQLiteDatabase db = dbContext.getWritableDatabase()) {
-                ContentValues ct = new ContentValues();
-                ct.put("id_customer", customer.getId());
-                ct.put("total", totalOrder);
-                ct.put("ghichu", "note");
-                idHoaDonNew = db.insert("HoaDon",null, ct);
-            } catch (Exception e) {
-                Toast.makeText(this,e.getMessage(), Toast.LENGTH_LONG).show();
-                e.printStackTrace();
-            }
-
-            i.putExtra("customer", customer);
-            i.putExtra("id_hoadon", (int)idHoaDonNew);
-            for(CT_BanLe ctBanLe : listCTBanLe) {
-                try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
-                    ContentValues values = new ContentValues();
-                    values.put("status", 3);
-                    values.put("id_hoadon", (int)idHoaDonNew);
-                    db.update("CT_BanLe", values, "status = ? AND id_customer = ? AND id_thuoc = ?", new String[] { String.valueOf(ctBanLe.getStatus()), String.valueOf(ctBanLe.getKhachhang().getId()), String.valueOf(ctBanLe.getThuoc().getId())});
-                } catch (Exception e) {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-
-            startActivity(i);
-        });
-
-        btnAddOrderLine.setOnClickListener(view -> {
-            Intent i = new Intent(Order.this, ProductOrder.class);
-            i.putExtra("customer", customer);
+            Intent i = new Intent(this, AdminListOrder.class);
             startActivity(i);
         });
     }
@@ -123,19 +83,37 @@ public class Order extends AppCompatActivity {
     public float getTotalOrder(List<CT_BanLe> listCTBanLe) {
         float totalOrder = 0;
         for (CT_BanLe ctBanLe : listCTBanLe) {
-            System.out.println("TOTAL: " + ctBanLe.getTotal());
-            System.out.println("QUANTITY: " + ctBanLe.getSoluong());
             totalOrder += ctBanLe.getTotal();
         }
         return totalOrder;
     }
 
     @SuppressLint("Range")
-    public ArrayList<CT_BanLe> getListBanLe() {
+    public ArrayList<CT_BanLe> getInfoHoaDon(int id_hoadon) {
         try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
             ArrayList<CT_BanLe> listBanLe = new ArrayList<>();
-            String query = "SELECT * FROM CT_BanLe WHERE status = ? AND id_customer = ?";
-            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(2), String.valueOf(customerID)});
+            String query = "SELECT * FROM HoaDon WHERE id = ?";
+            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id_hoadon)});
+            cursor.moveToFirst();
+
+            while(!cursor.isAfterLast()) {
+
+
+                cursor.moveToNext();
+            }
+            return listBanLe;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<CT_BanLe> getListBanLe(int id_hoadon) {
+        try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
+            ArrayList<CT_BanLe> listBanLe = new ArrayList<>();
+            String query = "SELECT * FROM CT_BanLe WHERE id_hoadon = ?";
+            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id_hoadon)});
             cursor.moveToFirst();
 
             while(!cursor.isAfterLast()) {
@@ -157,18 +135,16 @@ public class Order extends AppCompatActivity {
             }
             return listBanLe;
         } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
             return null;
         }
     }
 
     private void setControl() {
         btnBack = findViewById(R.id.btnBack);
-        btnExportOrder = findViewById(R.id.btnExportOrder);
         txtUsername = findViewById(R.id.txtUsername);
         txtPhone = findViewById(R.id.txtPhone);
         txtAddress = findViewById(R.id.txtAddress);
         txtTotalOrder = findViewById(R.id.txtTotalOrder);
-        btnAddOrderLine = findViewById(R.id.btnAddOrderLine);
     }
 }

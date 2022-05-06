@@ -43,6 +43,8 @@
         <activity android:name=".Order.ProductOrder" />
         <activity android:name=".Order.Order" />
         <activity android:name=".Order.OrderSuccess" />
+        <activity android:name=".Order.AdminListOrder" />
+        <activity android:name=".Order.DetailOrder" />
         <activity android:name=".AdminDashboard" />
         <activity android:name=".StaffDashboard" />
 

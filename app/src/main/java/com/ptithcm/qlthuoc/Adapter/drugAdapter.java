@@ -30,8 +30,6 @@ public class drugAdapter extends RecyclerView.Adapter<drugAdapter.ViewHolder>{
     private RecyclerListener listener;
     public drugAdapter(Context mContext){
         this.mContext = mContext;
-
-
     }
 
     public drugAdapter(Context mContext,RecyclerListener listener){

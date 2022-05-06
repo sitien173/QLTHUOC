@@ -1,9 +1,11 @@
 package com.ptithcm.qlthuoc.Adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -90,19 +92,30 @@ public class OrderLineAdapter extends BaseAdapter {
         }
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
 
+            @SuppressLint("Range")
             @Override
             public void onClick(View v) {
-
                 try (SQLiteDatabase db = dbContext.getWritableDatabase())
                 {
-                    // status: 2 (Chưa lập hóa đơn)
-                    ContentValues ct = new ContentValues();
-                    ct.put("id_thuoc", drug.getId());
-                    ct.put("soluong", 1);
-                    ct.put("total", 1 * drug.getDongia());
-                    ct.put("status", 2);
-                    ct.put("id_customer", customer.getId());
-                    db.insert("CT_BanLe",null, ct);
+                    String queryCTBanLe = "SELECT * FROM CT_BanLe WHERE status = ? AND id_customer = ? AND id_thuoc = ?";
+                    Cursor cursorCTBanLe = db.rawQuery(queryCTBanLe, new String[]{String.valueOf(2), String.valueOf(customer.getId()), String.valueOf(drug.getId())});
+                    cursorCTBanLe.moveToFirst();
+                    // nếu thuốc này đã có trong giỏ hàng
+                    if(!cursorCTBanLe.isAfterLast()) {
+                        ContentValues values = new ContentValues();
+                        values.put("soluong", cursorCTBanLe.getInt(cursorCTBanLe.getColumnIndex("soluong")) + 1);
+                        values.put("total", drug.getDongia() * (cursorCTBanLe.getInt(cursorCTBanLe.getColumnIndex("soluong")) + 1));
+                        db.update("CT_BanLe", values, "status = ? AND id_customer = ? AND id_thuoc = ?", new String[] { String.valueOf(2), String.valueOf(customer.getId()), String.valueOf(drug.getId())});
+                    } else { // nếu thuốc này chưa có trong giỏ hàng
+                        // status: 2 (Chưa lập hóa đơn)
+                        ContentValues ct = new ContentValues();
+                        ct.put("id_thuoc", drug.getId());
+                        ct.put("soluong", 1);
+                        ct.put("total", 1 * drug.getDongia());
+                        ct.put("status", 2);
+                        ct.put("id_customer", customer.getId());
+                        db.insert("CT_BanLe",null, ct);
+                    }
 
                     Intent intent = new Intent(context, Order.class);
                     intent.putExtra("customer", customer);

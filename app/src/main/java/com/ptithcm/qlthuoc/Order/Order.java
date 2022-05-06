@@ -1,6 +1,7 @@
 package com.ptithcm.qlthuoc.Order;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -18,11 +19,13 @@ import com.ptithcm.qlthuoc.Adapter.OrderLineAdapter;
 import com.ptithcm.qlthuoc.DbContext;
 import com.ptithcm.qlthuoc.Entity.AppUser;
 import com.ptithcm.qlthuoc.Entity.CT_BanLe;
+import com.ptithcm.qlthuoc.Entity.HoaDon;
 import com.ptithcm.qlthuoc.Entity.Thuoc;
 import com.ptithcm.qlthuoc.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Order extends AppCompatActivity {
@@ -56,7 +59,8 @@ public class Order extends AppCompatActivity {
         }
 
         listCTBanLe = getListBanLe();
-        System.out.println("LIST_ORDER_LINE: " + listCTBanLe.toArray().length);
+        float totalOrder = getTotalOrder(listCTBanLe);
+        txtTotalOrder.setText(String.valueOf(totalOrder));
         listView = (ListView)findViewById(R.id.listViewOrderline);
         cartAdapter = new CartAdapter(this, R.layout.item_detail_order, listCTBanLe, dbContext);
         listView.setAdapter(cartAdapter);
@@ -70,14 +74,29 @@ public class Order extends AppCompatActivity {
 
     private void setEvent() {
         btnBack.setOnClickListener(view -> {
-            startActivity(new Intent(this, ProductOrder.class));
+            Intent i = new Intent(this, ProductOrder.class);
+            i.putExtra("customer", customer);
+            startActivity(i);
         });
 
         btnExportOrder.setOnClickListener(view -> {
             Intent i = new Intent(Order.this, OrderSuccess.class);
-            i.putExtra("username", username);
-            i.putExtra("phone", phone);
-            i.putExtra("address", address);
+            i.putExtra("customer", customer);
+
+            float totalOrder = getTotalOrder(listCTBanLe);
+            HoaDon hoaDon = new HoaDon(null, customer, "note", totalOrder);
+
+            for(CT_BanLe ctBanLe : listCTBanLe) {
+                try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
+                    ContentValues values = new ContentValues();
+                    values.put("status", 3);
+                    values.put("id_hoadon", hoaDon.getId());
+                    db.update("CT_BanLe", values, "status = ? AND id_customer = ? AND id_thuoc = ?", new String[] { String.valueOf(ctBanLe.getStatus()), String.valueOf(ctBanLe.getKhachhang().getId()), String.valueOf(ctBanLe.getThuoc().getId())});
+                } catch (Exception e) {
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+
             startActivity(i);
         });
 
@@ -88,20 +107,14 @@ public class Order extends AppCompatActivity {
         });
     }
 
-    private void getTotalOrder() {
-        try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
-            ArrayList<CT_BanLe> listCTBanLe = new ArrayList<>();
-
-            String query = "SELECT * FROM CT_BanLe WHERE status = 2";
-
-            Cursor cursor = db.rawQuery(query, null);
-            cursor.moveToFirst();
-
-            while(cursor.isAfterLast() == false) {
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, "Lỗi kết nối", Toast.LENGTH_LONG).show();
+    public float getTotalOrder(List<CT_BanLe> listCTBanLe) {
+        float totalOrder = 0;
+        for (CT_BanLe ctBanLe : listCTBanLe) {
+            System.out.println("TOTAL: " + ctBanLe.getTotal());
+            System.out.println("QUANTITY: " + ctBanLe.getSoluong());
+            totalOrder += ctBanLe.getTotal();
         }
+        return totalOrder;
     }
 
     @SuppressLint("Range")

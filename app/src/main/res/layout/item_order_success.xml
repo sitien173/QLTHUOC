@@ -30,7 +30,7 @@
 
             <!-- Order line medicine  -->
             <LinearLayout
-                android:layout_width="260dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:orientation="vertical">
@@ -64,13 +64,6 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnDelOrderLine"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center_vertical"
-                android:backgroundTint="@android:color/white"
-                android:drawableLeft="@drawable/ic_delete" />
         </LinearLayout>
     </LinearLayout>
 

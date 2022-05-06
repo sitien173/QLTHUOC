@@ -13,6 +13,13 @@ public class HoaDon implements Serializable {
     private String ghichu;
     private float total;
 
+    public HoaDon(NhaThuoc nhaThuoc, AppUser khachhang, String ghichu, float total) {
+        this.nhaThuoc = nhaThuoc;
+        this.khachhang = khachhang;
+        this.ghichu = ghichu;
+        this.total = total;
+    }
+
     public int getId() {
         return id;
     }

@@ -59,9 +59,9 @@ public class AddInfoCustomer extends AppCompatActivity {
             String CUSTOMER_ROLE = "CUSTOMER";
             try (SQLiteDatabase db = dbContext.getWritableDatabase())
             {
-                Intent intent = new Intent(AddInfoCustomer.this, ProductOrder.class);
+                Intent intent = new Intent(AddInfoCustomer.this, Order.class);
                 String query = "SELECT * FROM AppUser WHERE username = ?";
-                Cursor cursor = db.rawQuery(query, new String[]{username});
+                Cursor cursor = db.rawQuery(query, new String[]{ username });
                 cursor.moveToFirst();
                 AppUser customer;
                 if(cursor.isAfterLast()) {
@@ -77,10 +77,14 @@ public class AddInfoCustomer extends AppCompatActivity {
                     ct.put("role", CUSTOMER_ROLE);
                     db.insert("AppUser",null, ct);
 
-                    customer = new AppUser(username, "1", username, avatarTemp, CUSTOMER_ROLE, address, phone);
+                    String queryInfoCustomerNew = "SELECT * FROM AppUser WHERE username = ? AND address = ? AND phone = ?";
+                    Cursor cursorInfoCustomerNew = db.rawQuery(queryInfoCustomerNew, new String[]{username, address, phone});
+                    cursorInfoCustomerNew.moveToFirst();
+
+                    customer = new AppUser(cursorInfoCustomerNew.getInt(0), username, "1", username, avatarTemp, CUSTOMER_ROLE, address, phone);
                     intent.putExtra("customer", customer);
                 } else {
-                    customer = new AppUser(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getBlob(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
+                    customer = new AppUser(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getBlob(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
                     intent.putExtra("customer", customer);
                 }
 

@@ -33,7 +33,7 @@ public class DbContext extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String table1 = "CREATE TABLE \"AppUser\" (" +
-                        "\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+                        "\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
                         "\"username\" TEXT NOT NULL UNIQUE, " +
                         "\"password\" TEXT NOT NULL, " +
                         "\"hoten\" TEXT NOT NULL, " +

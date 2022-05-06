@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 
 public class CT_BanLe implements Serializable {
+    private int id;
     private Thuoc thuoc;
     private HoaDon hoadon;
     private int soluong;

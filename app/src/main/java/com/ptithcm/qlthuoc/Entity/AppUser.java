@@ -23,7 +23,8 @@ public class AppUser implements Serializable {
         this.phone = "";
         this.id = 0;
     }
-    public AppUser(String username, String password, String hoten, byte[] avatar, String role, String address, String phone){
+    public AppUser(int id, String username, String password, String hoten, byte[] avatar, String role, String phone, String address){
+        this.id = id;
         this.username = username;
         this.password = password;
         this.hoten = hoten;

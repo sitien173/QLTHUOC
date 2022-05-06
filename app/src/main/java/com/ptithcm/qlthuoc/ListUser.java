@@ -102,7 +102,7 @@ public class ListUser extends AppCompatActivity {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
 //                String username, String password, String hoten, byte[] avatar, String role
-                AppUser user = new AppUser(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getBlob(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
+                AppUser user = new AppUser(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getBlob(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
                 list.add(user);
                 cursor.moveToNext();
             }

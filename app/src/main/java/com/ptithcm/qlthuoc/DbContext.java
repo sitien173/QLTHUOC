@@ -61,7 +61,8 @@ public class DbContext extends SQLiteOpenHelper {
                 " \"id_nhathuoc\" INTEGER DEFAULT NULL REFERENCES \"NhaThuoc\"(\"id\"), " +
                 " \"khachhang\" TEXT DEFAULT NULL, " +
                 " \"ghichu\" TEXT DEFAULT NULL, " +
-                " \"total\" FLOAT DEFAULT NULL " +
+                " \"total\" FLOAT DEFAULT NULL, " +
+                " \"id_customer\" INTEGER DEFAULT NULL REFERENCES \"AppUser\"(\"id\") " +
                 "); ";
 
         String table5 = "CREATE TABLE \"Thuoc_NhaThuoc\" ( " +

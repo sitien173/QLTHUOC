@@ -33,6 +33,7 @@ public class OrderSuccess extends AppCompatActivity {
     Button btnNewOrder;
     ListView listView;
     AppUser customer;
+    int id_hoadon;
     OrderSuccessAdapter orderSuccessAdapter;
     ArrayList<CT_BanLe> listCTBanLe = new ArrayList<>();
     DbContext dbContext;
@@ -49,6 +50,8 @@ public class OrderSuccess extends AppCompatActivity {
 
         // get and set value from screen add_info_customer to product_order
         customer = (AppUser) getIntent().getSerializableExtra("customer");
+        id_hoadon = (Integer) getIntent().getSerializableExtra("id_hoadon");
+        System.out.println("IDHOADON: " + id_hoadon);
         if(customer != null) {
             txtUsername.setText("Khách hàng: " + customer.getUsername());
             txtPhone.setText("Số ĐT: " + customer.getPhone());
@@ -56,7 +59,7 @@ public class OrderSuccess extends AppCompatActivity {
             customerID = customer.getId();
         }
 
-        listCTBanLe = getListBanLe();
+        listCTBanLe = getListBanLe(id_hoadon);
         float totalOrder = getTotalOrder(listCTBanLe);
         txtTotalOrder.setText(String.valueOf(totalOrder));
         listView = (ListView)findViewById(R.id.listViewOrderline);
@@ -85,11 +88,11 @@ public class OrderSuccess extends AppCompatActivity {
     }
 
     @SuppressLint("Range")
-    public ArrayList<CT_BanLe> getListBanLe() {
+    public ArrayList<CT_BanLe> getListBanLe(int id_hoadon) {
         try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
             ArrayList<CT_BanLe> listBanLe = new ArrayList<>();
-            String query = "SELECT * FROM CT_BanLe WHERE status = ? AND id_customer = ?";
-            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(3), String.valueOf(customerID)});
+            String query = "SELECT * FROM CT_BanLe WHERE status = ? AND id_customer = ? AND id_hoadon = ?";
+            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(3), String.valueOf(customerID), String.valueOf(id_hoadon)});
             cursor.moveToFirst();
 
             while(!cursor.isAfterLast()) {

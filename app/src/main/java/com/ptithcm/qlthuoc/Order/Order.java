@@ -81,10 +81,26 @@ public class Order extends AppCompatActivity {
 
         btnExportOrder.setOnClickListener(view -> {
             Intent i = new Intent(Order.this, OrderSuccess.class);
-            i.putExtra("customer", customer);
 
             float totalOrder = getTotalOrder(listCTBanLe);
+
+            // INSERT HOADON INTO DB
+            try (SQLiteDatabase db = dbContext.getWritableDatabase()) {
+                ContentValues ct = new ContentValues();
+                ct.put("id_customer", customer.getId());
+                ct.put("total", totalOrder);
+                ct.put("ghichu", "note");
+                long idNew = db.insert("HoaDon",null, ct);
+                System.out.println("ID_HOADON: " + idNew);
+            } catch (Exception e) {
+                Toast.makeText(this,e.getMessage(), Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+
             HoaDon hoaDon = new HoaDon(null, customer, "note", totalOrder);
+
+            i.putExtra("customer", customer);
+            i.putExtra("id_hoadon", hoaDon.getId());
 
             for(CT_BanLe ctBanLe : listCTBanLe) {
                 try (SQLiteDatabase db = dbContext.getReadableDatabase()) {

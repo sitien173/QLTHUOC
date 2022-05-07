@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import java.util.Date;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ptithcm.qlthuoc.AdminDashboard;
@@ -68,9 +68,17 @@ public class AddInfoCustomer extends AppCompatActivity {
                     // add customer to DB
                     ContentValues ct = new ContentValues();
                     String DEFAULT_PASS = "1";
-                    ct.put("username", username);
+
+                    // làm cho username thành unique
+                    //Getting the current date
+                    Date date = new Date();
+                    //This method returns the time in millis
+                    long timeMilli = date.getTime();
+                    String usernameLast = username.replaceAll(" ", "") + timeMilli;
+
                     ct.put("password", DEFAULT_PASS);
                     ct.put("hoten", username);
+                    ct.put("username", usernameLast);
                     ct.put("phone", phone);
                     ct.put("address", address);
                     ct.put("avatar", avatarTemp);
@@ -78,10 +86,10 @@ public class AddInfoCustomer extends AppCompatActivity {
                     db.insert("AppUser",null, ct);
 
                     String queryInfoCustomerNew = "SELECT * FROM AppUser WHERE username = ? AND address = ? AND phone = ?";
-                    Cursor cursorInfoCustomerNew = db.rawQuery(queryInfoCustomerNew, new String[]{username, address, phone});
+                    Cursor cursorInfoCustomerNew = db.rawQuery(queryInfoCustomerNew, new String[]{usernameLast, address, phone});
                     cursorInfoCustomerNew.moveToFirst();
 
-                    customer = new AppUser(cursorInfoCustomerNew.getInt(0), username, "1", username, avatarTemp, CUSTOMER_ROLE, address, phone);
+                    customer = new AppUser(cursorInfoCustomerNew.getInt(0), usernameLast, "1", username, avatarTemp, CUSTOMER_ROLE, address, phone);
                     intent.putExtra("customer", customer);
                 } else {
                     customer = new AppUser(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getBlob(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));

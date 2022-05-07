@@ -53,7 +53,7 @@ public class DetailOrder extends AppCompatActivity {
         customer = (AppUser) getIntent().getSerializableExtra("customer");
         id_hoadon = (Integer) getIntent().getSerializableExtra("id_hoadon");
         if(customer != null) {
-            txtUsername.setText("Khách hàng: " + customer.getUsername());
+            txtUsername.setText("Khách hàng: " + customer.getHoten());
             txtPhone.setText("Số ĐT: " + customer.getPhone());
             txtAddress.setText("Địa chỉ: " + customer.getAddress());
             customerID = customer.getId();

@@ -52,7 +52,7 @@ public class Order extends AppCompatActivity {
 
         customer = (AppUser) getIntent().getSerializableExtra("customer");
         if(customer != null) {
-            txtUsername.setText("Khách hàng: " + customer.getUsername());
+            txtUsername.setText("Khách hàng: " + customer.getHoten());
             txtPhone.setText("Số ĐT: " + customer.getPhone());
             txtAddress.setText("Địa chỉ: " + customer.getAddress());
             customerID = customer.getId();
@@ -72,6 +72,42 @@ public class Order extends AppCompatActivity {
         dbContext = new DbContext(this);
     }
 
+    // kiểm tra các sản phẩm trong giỏ hàng có sản phẩm nào hết số lượng tồn hay không
+    @SuppressLint("Range")
+    private boolean haveProductNotEnoughQuantity(ArrayList<CT_BanLe> listCTBanLe) {
+        for(CT_BanLe ctBanLe : listCTBanLe) {
+            try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
+                String query = "SELECT * FROM Thuoc WHERE id = ?";
+                Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(ctBanLe.getThuoc().getId())});
+                cursor.moveToFirst();
+
+                int quantityCTBanLe = ctBanLe.getSoluong();
+                int quantityDrug = cursor.getInt(cursor.getColumnIndex(("soluong")));
+
+                if(quantityCTBanLe > quantityDrug) {
+                    return true;
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }
+        return false;
+    }
+
+    // kiểm tra các sản phẩm trong giỏ hàng có sản phẩm nào hết số lượng tồn hay không
+    @SuppressLint("Range")
+    private void updateQuantityProduct(ArrayList<CT_BanLe> listCTBanLe) {
+        for(CT_BanLe ctBanLe : listCTBanLe) {
+            try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
+                ContentValues values = new ContentValues();
+                values.put("soluong", ctBanLe.getThuoc().getSoluong() - ctBanLe.getSoluong());
+                db.update("Thuoc", values, "id = ?", new String[] { String.valueOf(ctBanLe.getThuoc().getId()) });
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
     private void setEvent() {
         btnBack.setOnClickListener(view -> {
             Intent i = new Intent(this, ProductOrder.class);
@@ -80,37 +116,45 @@ public class Order extends AppCompatActivity {
         });
 
         btnExportOrder.setOnClickListener(view -> {
-            Intent i = new Intent(Order.this, OrderSuccess.class);
-            long idHoaDonNew = 0;
+            boolean isHaveProductSoldOut = haveProductNotEnoughQuantity(listCTBanLe);
+            if(!isHaveProductSoldOut) {
+                Intent i = new Intent(Order.this, OrderSuccess.class);
+                long idHoaDonNew = 0;
 
-            float totalOrder = getTotalOrder(listCTBanLe);
+                float totalOrder = getTotalOrder(listCTBanLe);
 
-            // INSERT HOADON INTO DB
-            try (SQLiteDatabase db = dbContext.getWritableDatabase()) {
-                ContentValues ct = new ContentValues();
-                ct.put("id_customer", customer.getId());
-                ct.put("total", totalOrder);
-                ct.put("ghichu", "note");
-                idHoaDonNew = db.insert("HoaDon",null, ct);
-            } catch (Exception e) {
-                Toast.makeText(this,e.getMessage(), Toast.LENGTH_LONG).show();
-                e.printStackTrace();
-            }
-
-            i.putExtra("customer", customer);
-            i.putExtra("id_hoadon", (int)idHoaDonNew);
-            for(CT_BanLe ctBanLe : listCTBanLe) {
-                try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
-                    ContentValues values = new ContentValues();
-                    values.put("status", 3);
-                    values.put("id_hoadon", (int)idHoaDonNew);
-                    db.update("CT_BanLe", values, "status = ? AND id_customer = ? AND id_thuoc = ?", new String[] { String.valueOf(ctBanLe.getStatus()), String.valueOf(ctBanLe.getKhachhang().getId()), String.valueOf(ctBanLe.getThuoc().getId())});
+                // INSERT HOADON INTO DB
+                try (SQLiteDatabase db = dbContext.getWritableDatabase()) {
+                    ContentValues ct = new ContentValues();
+                    ct.put("id_customer", customer.getId());
+                    ct.put("total", totalOrder);
+                    ct.put("ghichu", "note");
+                    idHoaDonNew = db.insert("HoaDon",null, ct);
                 } catch (Exception e) {
-                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,e.getMessage(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
                 }
-            }
 
-            startActivity(i);
+                i.putExtra("customer", customer);
+                i.putExtra("id_hoadon", (int)idHoaDonNew);
+                for(CT_BanLe ctBanLe : listCTBanLe) {
+                    try (SQLiteDatabase db = dbContext.getReadableDatabase()) {
+                        ContentValues values = new ContentValues();
+                        values.put("status", 3);
+                        values.put("id_hoadon", (int)idHoaDonNew);
+                        db.update("CT_BanLe", values, "status = ? AND id_customer = ? AND id_thuoc = ?", new String[] { String.valueOf(ctBanLe.getStatus()), String.valueOf(ctBanLe.getKhachhang().getId()), String.valueOf(ctBanLe.getThuoc().getId())});
+                    } catch (Exception e) {
+                        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                updateQuantityProduct(listCTBanLe);
+
+                startActivity(i);
+            } else {
+                Toast.makeText(this, "Xuất hóa đơn thất bại. Có sản phẩm trong giỏ hàng đã hết hàng", Toast.LENGTH_LONG).show();
+                return;
+            }
         });
 
         btnAddOrderLine.setOnClickListener(view -> {

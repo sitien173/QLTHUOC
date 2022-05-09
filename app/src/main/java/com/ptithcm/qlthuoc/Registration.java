@@ -35,7 +35,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class Registration extends AppCompatActivity {
-    EditText txtUsername,txtPassword, txtHoTen;
+    EditText txtUsername,txtPassword, txtHoTen, txtPhone, txtAddress;
     TextView txtLogin;
     Button btnRegistration, btnSelectPhoto;
     ImageView avatar;
@@ -66,6 +66,8 @@ public class Registration extends AppCompatActivity {
             String username = txtUsername.getText().toString().trim();
             String password = txtPassword.getText().toString().trim();
             String hoten = txtHoTen.getText().toString().trim();
+            String phone = txtPhone.getText().toString().trim();
+            String address = txtAddress.getText().toString().trim();
             byte[] avt = file;
             String role = "CUSTOMER";
             try (SQLiteDatabase db = dbContext.getWritableDatabase())
@@ -76,6 +78,8 @@ public class Registration extends AppCompatActivity {
                 ct.put("hoten",hoten);
                 ct.put("avatar", avt);
                 ct.put("role", role);
+                ct.put("phone", phone);
+                ct.put("address", address);
                 db.insert("AppUser",null, ct);
                 Toast.makeText(this, "Dang ky thanh cong", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(this, MainActivity.class));
@@ -105,6 +109,8 @@ public class Registration extends AppCompatActivity {
         txtLogin = findViewById(R.id.txtLogin);
         btnSelectPhoto = findViewById(R.id.btnSelectPhoto);
         avatar = findViewById(R.id.avatar);
+        txtPhone = findViewById(R.id.txtPhone);
+        txtAddress = findViewById(R.id.txtAddress);
     }
 
     @Override
